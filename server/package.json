@@ -1,9 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "ts-node dist/app.js",
     "build": "tsc",
     "dev": "nodemon --watch 'src/**/*' --exec 'ts-node src/app.ts'"
   },
