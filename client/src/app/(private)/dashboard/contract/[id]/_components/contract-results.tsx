@@ -42,11 +42,18 @@ export default function ContractResults({ contractId }: IContractResultsProps) {
     return notFound();
   }
 
+  if (!analysisResults) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <ContractAnalysisResults
       contractId={contractId}
       analysisResults={analysisResults}
       isActive={true}
+      onUpgrade={function (): void {
+        throw new Error("Function not implemented.");
+      }}
     />
   );
 }
