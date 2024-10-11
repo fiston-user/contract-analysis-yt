@@ -20,12 +20,13 @@ interface IContractAnalysisResultsProps {
   analysisResults: ContractAnalysis;
   isActive: boolean;
   contractId: string;
+  onUpgrade: () => void;
 }
 
 export default function ContractAnalysisResults({
   analysisResults,
   isActive,
-  contractId,
+  onUpgrade,
 }: IContractAnalysisResultsProps) {
   const [activeTab, setActiveTab] = useState("summary");
 
@@ -145,7 +146,9 @@ export default function ContractAnalysisResults({
     return (
       <div className="relative">
         <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-50 flex items-center justify-center">
-          <Button variant={"outline"}>Upgrade to Premium</Button>
+          <Button onClick={onUpgrade} variant={"outline"}>
+            Upgrade to Premium
+          </Button>
         </div>
         <div className="opacity-50">{content}</div>
       </div>
@@ -301,7 +304,13 @@ export default function ContractAnalysisResults({
                   Upgrade to Premium to see contract detailed analysis,
                   including key clauses and recommendations.
                 </p>
-                <Button className="mt-4">Upgrade to Premium</Button>
+                <Button
+                  variant={"outline"}
+                  onClick={onUpgrade}
+                  className="mt-4"
+                >
+                  Upgrade to Premium
+                </Button>
               </CardContent>
             </Card>
           )}

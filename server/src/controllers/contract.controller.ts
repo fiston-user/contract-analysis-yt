@@ -75,13 +75,15 @@ export const analyzeContract = async (req: Request, res: Response) => {
     const pdfText = await extractTextFromPDF(fileKey);
     let analysis;
 
-    analysis = await analyzeContractWithAI(pdfText, contractType);
-    console.log(analysis);
+    if (user.isPremium) {
+      analysis = await analyzeContractWithAI(pdfText, "premium", contractType);
+    } else {
+      analysis = await analyzeContractWithAI(pdfText, "free", contractType);
+    }
 
-    //@ts-ignore
-    // if (!analysis.summary || !analysis.risks || !analysis.opportunities) {
-    //   throw new Error("Failed to analyze contract");
-    // }
+    if (!analysis.summary || !analysis.risks || !analysis.opportunities) {
+      throw new Error("Failed to analyze contract");
+    }
 
     const savedAnalysis = await ContractAnalysisSchema.create({
       userId: user._id,

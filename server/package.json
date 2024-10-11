@@ -24,7 +24,9 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "pdfjs-dist": "^3.11.174"
+    "pdfjs-dist": "^3.11.174",
+    "resend": "^4.0.0",
+    "stripe": "^17.2.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

@@ -63,9 +63,12 @@ export const detectContractType = async (
 
 export const analyzeContractWithAI = async (
   contractText: string,
+  tier: "free" | "premium",
   contractType: string
 ) => {
-  let prompt = `
+  let prompt;
+  if (tier === "premium") {
+    prompt = `
     Analyze the following ${contractType} contract and provide:
     1. A list of at least 10 potential risks for the party receiving the contract, each with a brief explanation and severity level (low, medium, high).
     2. A list of at least 10 potential opportunities or benefits for the receiving party, each with a brief explanation and impact level (low, medium, high).
@@ -101,6 +104,22 @@ export const analyzeContractWithAI = async (
       "specificClauses": "Summary of clauses specific to this contract type"
     }
       `;
+  } else {
+    prompt = `
+    Analyze the following ${contractType} contract and provide:
+    1. A list of at least 5 potential risks for the party receiving the contract, each with a brief explanation and severity level (low, medium, high).
+    2. A list of at least 5 potential opportunities or benefits for the receiving party, each with a brief explanation and impact level (low, medium, high).
+    3. A brief summary of the contract
+    4. An overall score from 1 to 100, with 100 being the highest. This score represents the overall favorability of the contract based on the identified risks and opportunities.
+
+     {
+      "risks": [{"risk": "Risk description", "explanation": "Brief explanation"}],
+      "opportunities": [{"opportunity": "Opportunity description", "explanation": "Brief explanation"}],
+      "summary": "Brief summary of the contract",
+      "overallScore": "Overall score from 1 to 100"
+    }
+`;
+  }
 
   prompt += `
     Important: Provide only the JSON object in your response, without any additional text or formatting. 
