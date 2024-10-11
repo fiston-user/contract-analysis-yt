@@ -26,7 +26,7 @@ export function PricingSection() {
   return (
     <div className="container mx-auto px-4 py-16 bg-gradient-to-b from-background to-background/80">
       <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-center">
-        Choose the plan that's right for you
+        Choose the plan that&apos;s right for you
       </h2>
       <p className="text-lg text-muted-foreground mt-4 text-center max-w-3xl mx-auto">
         Select the perfect plan for your needs. Upgrade anytime to unlock

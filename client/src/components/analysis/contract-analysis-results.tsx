@@ -353,7 +353,9 @@ export default function ContractAnalysisResults({
         <CardContent>
           <ul className="grid md:grid-cols-2 gap-2">
             {analysisResults.negotiationPoints?.map((point, index) => (
-              <li className="flex items-center">{point}</li>
+              <li className="flex items-center" key={index}>
+                {point}
+              </li>
             ))}
           </ul>
         </CardContent>
