@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "tsc",
     "dev": "nodemon --watch 'src/**/*' --exec 'ts-node src/app.ts'"
   },
   "keywords": [],
